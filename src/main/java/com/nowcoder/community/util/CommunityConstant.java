@@ -17,4 +17,9 @@ public interface CommunityConstant {
     int DEFAULT_EXPIRED_SECONDS = 3600 * 12;
     // 记住状态下的失效时间 7天
     int REMEMBER_EXPIRED_SECONDS = 3600 * 24 * 7;
+
+    // 实体类型：回复帖子
+    int ENTITY_TYPE_POST = 1;
+    // 实体类型：回复评论
+    int ENTITY_TYPE_COMMENT = 2;
 }

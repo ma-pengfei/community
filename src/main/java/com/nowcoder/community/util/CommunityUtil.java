@@ -1,5 +1,6 @@
 package com.nowcoder.community.util;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -28,19 +29,25 @@ public class CommunityUtil {
         return DigestUtils.md5DigestAsHex(key.getBytes());
     }
 
-    public static String getJSONString(int code, String... msg) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", code);
-        if (msg != null) {
-            map.put("msg", msg);
+    public static String getJSONString(int code, String msg, Map<String, Object> map) {
+        JSONObject json = new JSONObject();
+        json.put("code", code);
+        json.put("msg", msg);
+        if (map != null) {
+            for (String key : map.keySet()) {
+                json.put(key, map.get(key));
+            }
         }
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStr = null;
-        try {
-             jsonStr = objectMapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return jsonStr;
+        return json.toJSONString();
     }
+
+    public static String getJSONString(int code, String msg) {
+        return getJSONString(code, msg, null);
+    }
+
+    public static String getJSONString(int code) {
+        return getJSONString(code, null, null);
+    }
+
+
 }
