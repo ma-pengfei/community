@@ -33,4 +33,9 @@
           and entity_id = #{entityId}
           and entity_type = #{entityType};
     </select>
+    <select id="selectCommentById" resultType="Comment">
+        select <include refid="selectFields"/>
+        from comment
+        where id = #{id};
+    </select>
 </mapper>
