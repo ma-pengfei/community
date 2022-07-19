@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface DiscussPostMapper {
 
-    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit);
+    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit, int orderMode);
 
     //@Param 这个注解用于给参数起别名。并且当动态sql中只有一个参数时，则必须加别名
     int selectDiscussPostRows(@Param("userId") int userId);
@@ -27,5 +27,7 @@ public interface DiscussPostMapper {
     int updateType(int id, int type);
 
     int updateStatus(int id, int status);
+
+    int updateScore( int id, double score);
 
 }
