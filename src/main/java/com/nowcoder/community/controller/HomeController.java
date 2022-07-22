@@ -33,6 +33,12 @@ public class HomeController implements CommunityConstant {
     @Autowired
     private LikeService likeService;
 
+    // 根路径处理
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String root() {
+        return "forward:/index";
+    }
+
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page,
                                @RequestParam(name = "orderMode", defaultValue = "0") int orderMode) {
@@ -65,7 +71,7 @@ public class HomeController implements CommunityConstant {
         return "/error/500";
     }
 
-    @RequestMapping(path = "denied", method = RequestMethod.GET)
+    @RequestMapping(path = "/denied", method = RequestMethod.GET)
     public String getDeniedPage() {
         // 没有访问权限时，通过此处跳转至 404 页面
         return "/error/404";

@@ -57,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                         AUTHORITY_MODERATOR
                 ).antMatchers(
                         "/discuss/delete",
-                        "/data/**"
+                        "/data/**",
+                        "/actuator/**"
                 ).hasAnyAuthority(
                         AUTHORITY_ADMIN
                 ).anyRequest().permitAll();// 除此之外的所有请求都放行
